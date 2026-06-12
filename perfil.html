@@ -21,15 +21,16 @@
 <script>
 const session = renderLayout('perfil');
 
-function render() {
-  const initials = session.nombre.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+async function render() {
+  const me = (await getMe()).user;
+  const initials = me.nombre.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
 
   document.getElementById('pageContent').innerHTML = `
     <div class="perfil-header">
       <div class="perfil-avatar">${initials}</div>
       <div class="perfil-nombre">
-        <h2>${session.nombre}</h2>
-        <p>${rolLabel(session.rol)} · ${session.usuario}</p>
+        <h2>${me.nombre}</h2>
+        <p>${rolLabel(me.rol)} · ${me.usuario}</p>
       </div>
     </div>
 
@@ -39,19 +40,19 @@ function render() {
         <div style="display:flex;flex-direction:column;gap:16px">
           <div>
             <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">NOMBRE COMPLETO</div>
-            <div style="font-size:15px;font-weight:600">${session.nombre}</div>
+            <div style="font-size:15px;font-weight:600">${me.nombre}</div>
           </div>
           <div>
             <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">USUARIO</div>
-            <div style="font-size:15px;font-weight:600;font-family:monospace">${session.usuario}</div>
+            <div style="font-size:15px;font-weight:600;font-family:monospace">${me.usuario}</div>
           </div>
           <div>
             <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">ROL</div>
-            <span class="rol-badge rol-${session.rol}">${rolLabel(session.rol)}</span>
+            <span class="rol-badge rol-${me.rol}">${rolLabel(me.rol)}</span>
           </div>
           <div>
             <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">CORREO</div>
-            <div style="font-size:15px">${session.email || 'No registrado'}</div>
+            <div style="font-size:15px">${me.email || 'No registrado'}</div>
           </div>
         </div>
       </div>
@@ -112,20 +113,17 @@ function cambiarContrasena() {
   if (nueva !== confirm) { showToast('Las contraseñas no coinciden.', 'error'); return; }
   if (nueva.length < 6) { showToast('La contraseña debe tener mínimo 6 caracteres.', 'error'); return; }
 
-  const db = getDB();
-  const user = db.usuarios.find(u => u.id === session.id);
-  if (!user || user.contrasena !== actual) { showToast('Contraseña actual incorrecta.', 'error'); return; }
-
-  user.contrasena = nueva;
-  saveDB(db);
-  setSession({ ...session, contrasena: nueva });
-  document.getElementById('passActual').value = '';
-  document.getElementById('passNueva').value = '';
-  document.getElementById('passConfirm').value = '';
-  showToast('Contraseña actualizada correctamente.', 'success');
+  changeMyPassword(actual, nueva)
+    .then(() => {
+      document.getElementById('passActual').value = '';
+      document.getElementById('passNueva').value = '';
+      document.getElementById('passConfirm').value = '';
+      showToast('Contraseña actualizada correctamente.', 'success');
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 
-render();
+render().catch(error => showToast(error.message, 'error'));
 </script>
 </body>
 </html>

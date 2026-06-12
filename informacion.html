@@ -27,11 +27,12 @@ const session = renderLayout('informacion');
 // Fecha por defecto: hoy
 document.getElementById('fechaFiltro').value = new Date().toISOString().split('T')[0];
 
-function render() {
-  const db = getDB();
+async function render() {
   const fecha = document.getElementById('fechaFiltro').value;
-  const infos = db.informacion.filter(i => i.fecha === fecha);
-  const ausenciasHoy = db.ausencias.filter(a => a.fecha === fecha && a.estado === 'aprobada');
+  const [infoData, ausenciasData] = await Promise.all([fetchInformation(fecha), fetchAusencias()]);
+  const infos = infoData.informacion;
+  const novedadesHoy = infoData.novedades;
+  const ausenciasHoy = ausenciasData.ausencias.filter(a => a.fecha === fecha && a.estado === 'aprobada');
 
   const fechaLabel = fecha ? new Date(fecha + 'T12:00:00').toLocaleDateString('es-CO', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
@@ -46,7 +47,7 @@ function render() {
       </div>
     </div>`;
 
-  if (!infos.length && !ausenciasHoy.length) {
+  if (!infos.length && !ausenciasHoy.length && !novedadesHoy.length) {
     html += `
       <div class="card">
         <div class="empty-state">
@@ -95,7 +96,6 @@ function render() {
   }
 
   // Sección de todas las novedades del día
-  const novedadesHoy = db.novedades.filter(n => n.fecha === fecha);
   if (novedadesHoy.length) {
     html += `
       <div class="card" style="margin-top:20px">
@@ -118,7 +118,7 @@ function render() {
   document.getElementById('pageContent').innerHTML = html;
 }
 
-render();
+render().catch(error => showToast(error.message, 'error'));
 </script>
 </body>
 </html>

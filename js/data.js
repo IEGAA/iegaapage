@@ -1,4 +1,4 @@
-// ===================== DATOS INICIALES DEL SISTEMA =====================
+// ===================== CATÁLOGOS DEL SISTEMA =====================
 
 const GRUPOS = [
   '6-1','6-2','8-1','8-2','9-1','9-2','9-3','9-4','9-5','9-6',
@@ -25,66 +25,15 @@ const MATERIAS = [
   'Educación Física','Inglés','Arte','Ética','Filosofía','Química','Física','Biología'
 ];
 
-const USUARIOS_INICIALES = [
-  { id: 1, usuario: '1034918343', contrasena: 'G1034918343', nombre: 'Administrador', rol: 'administrador', email: 'admin@colegio.edu.co' }
-];
+const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
 
-// Generar horario base aleatorio pero consistente
-function generarHorarioBase() {
-  const horario = {};
-  DIAS.forEach(dia => {
-    horario[dia] = {};
-    HORAS.forEach(hora => {
-      horario[dia][hora] = {};
-      GRUPOS.forEach(grupo => {
-        const profIdx = Math.floor((dia.charCodeAt(0) + hora.charCodeAt(0) + grupo.charCodeAt(0)) % PROFESORES.length);
-        const matIdx = Math.floor((dia.charCodeAt(1) + hora.charCodeAt(1) + grupo.charCodeAt(1)) % MATERIAS.length);
-        horario[dia][hora][grupo] = {
-          profesor: PROFESORES[profIdx],
-          materia: MATERIAS[matIdx]
-        };
-      });
-    });
-  });
-  return horario;
-}
-
-// ===================== GESTIÓN DE ESTADO =====================
-
-const DB_KEY = 'plataforma_educativa_db';
-
-function getDB() {
-  const raw = localStorage.getItem(DB_KEY);
-  if (raw) return JSON.parse(raw);
-  return initDB();
-}
-
-function saveDB(db) {
-  localStorage.setItem(DB_KEY, JSON.stringify(db));
-}
-
-function initDB() {
-  const horarioBase = generarHorarioBase();
-  const db = {
-    usuarios: USUARIOS_INICIALES,
-    horarioBase: horarioBase,
-    horarioNovedades: JSON.parse(JSON.stringify(horarioBase)),
-    ausencias: [],
-    novedades: [],
-    informacion: []
-  };
-  saveDB(db);
-  return db;
-}
-
-// Sesión
 function getSession() {
-  const s = sessionStorage.getItem('session');
-  return s ? JSON.parse(s) : null;
+  const raw = sessionStorage.getItem('session');
+  return raw ? JSON.parse(raw) : null;
 }
 
-function setSession(usuario) {
-  sessionStorage.setItem('session', JSON.stringify(usuario));
+function setSession(session) {
+  sessionStorage.setItem('session', JSON.stringify(session));
 }
 
 function clearSession() {
@@ -92,7 +41,133 @@ function clearSession() {
 }
 
 function requireAuth() {
-  const s = getSession();
-  if (!s) { window.location.href = 'index.html'; return null; }
-  return s;
+  const session = getSession();
+  if (!session?.token) {
+    window.location.href = 'index.html';
+    return null;
+  }
+  return session;
+}
+
+async function apiRequest(path, options = {}) {
+  const session = getSession();
+  const headers = new Headers(options.headers || {});
+  if (session?.token) headers.set('Authorization', `Bearer ${session.token}`);
+  if (options.body && !headers.has('Content-Type') && !(options.body instanceof FormData)) {
+    headers.set('Content-Type', 'application/json');
+  }
+
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers
+  });
+
+  const contentType = response.headers.get('content-type') || '';
+  const payload = contentType.includes('application/json') ? await response.json() : await response.text();
+  if (!response.ok) {
+    const message = payload && payload.message ? payload.message : 'Error al conectar con el servidor';
+    throw new Error(message);
+  }
+  return payload;
+}
+
+function apiJson(path, options = {}) {
+  return apiRequest(path, options);
+}
+
+async function loginWithApi(usuario, contrasena) {
+  const response = await apiRequest('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ usuario, contrasena })
+  });
+  setSession({ ...response.user, token: response.token });
+  return response.user;
+}
+
+async function fetchDashboard() {
+  return apiRequest('/api/dashboard');
+}
+
+async function fetchHorarios(kind = 'novedades') {
+  return apiRequest(`/api/horarios/${kind}`);
+}
+
+async function fetchAusencias() {
+  return apiRequest('/api/ausencias');
+}
+
+async function createAbsence(payload) {
+  return apiRequest('/api/ausencias', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+}
+
+async function approveAbsence(id) {
+  return apiRequest(`/api/ausencias/${id}/approve`, { method: 'PATCH' });
+}
+
+async function rejectAbsence(id) {
+  return apiRequest(`/api/ausencias/${id}/reject`, { method: 'PATCH' });
+}
+
+async function fetchInformation(fecha) {
+  const query = fecha ? `?fecha=${encodeURIComponent(fecha)}` : '';
+  return apiRequest(`/api/informacion${query}`);
+}
+
+async function createNovedad(payload) {
+  return apiRequest('/api/novedades', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+}
+
+async function fetchUsers() {
+  return apiRequest('/api/usuarios');
+}
+
+async function createUser(payload) {
+  return apiRequest('/api/usuarios', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+}
+
+async function updateUser(id, payload) {
+  return apiRequest(`/api/usuarios/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload)
+  });
+}
+
+async function deleteUser(id) {
+  return apiRequest(`/api/usuarios/${id}`, { method: 'DELETE' });
+}
+
+async function getMe() {
+  return apiRequest('/api/me');
+}
+
+async function changeMyPassword(currentPassword, newPassword) {
+  return apiRequest('/api/me/password', {
+    method: 'PATCH',
+    body: JSON.stringify({ currentPassword, newPassword })
+  });
+}
+
+function logout() {
+  clearSession();
+  window.location.href = 'index.html';
+}
+
+function formatFecha(iso) {
+  if (!iso) return '-';
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-CO', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function rolLabel(rol) {
+  const map = { administrador: 'Administrador', coordinador: 'Coordinador', profesor: 'Profesor' };
+  return map[rol] || rol;
 }

@@ -79,9 +79,9 @@ if (session && session.rol !== 'administrador') {
   render();
 }
 
-function render() {
-  const db = getDB();
-  const usuarios = db.usuarios;
+async function render() {
+  const usuarios = (await fetchUsers()).usuarios;
+  window.__usuariosCache = usuarios;
 
   const rows = usuarios.map(u => `
     <tr>
@@ -141,13 +141,12 @@ function abrirModal(id) {
 }
 
 function editarUsuario(id) {
-  const db = getDB();
-  const u = db.usuarios.find(x => x.id === id);
+  const u = (window.__usuariosCache || []).find(x => x.id === id);
   if (!u) return;
   document.getElementById('editId').value = u.id;
   document.getElementById('uNombre').value = u.nombre;
   document.getElementById('uUsuario').value = u.usuario;
-  document.getElementById('uContrasena').value = u.contrasena;
+  document.getElementById('uContrasena').value = '';
   document.getElementById('uRol').value = u.rol;
   document.getElementById('uEmail').value = u.email || '';
   document.getElementById('modalTitle').textContent = 'Editar usuario';
@@ -166,32 +165,29 @@ function guardarUsuario() {
   const email = document.getElementById('uEmail').value.trim();
   const editId = document.getElementById('editId').value;
 
-  if (!nombre || !usuario || !contrasena) { showToast('Completa todos los campos requeridos.', 'error'); return; }
+  if (!nombre || !usuario) { showToast('Completa nombre y usuario.', 'error'); return; }
+  if (!editId && !contrasena) { showToast('La contraseña inicial es obligatoria.', 'error'); return; }
 
-  const db = getDB();
+  const payload = { nombre, usuario, contrasena, rol, email };
+  const request = editId ? updateUser(editId, payload) : createUser(payload);
 
-  if (editId) {
-    const u = db.usuarios.find(x => x.id === parseInt(editId));
-    if (u) { Object.assign(u, { nombre, usuario, contrasena, rol, email }); }
-  } else {
-    // Verificar usuario único
-    if (db.usuarios.find(u => u.usuario === usuario)) { showToast('Ese usuario ya existe.', 'error'); return; }
-    db.usuarios.push({ id: Date.now(), nombre, usuario, contrasena, rol, email });
-  }
-
-  saveDB(db);
-  cerrarModal();
-  showToast(editId ? 'Usuario actualizado.' : 'Usuario creado correctamente.', 'success');
-  render();
+  request
+    .then(() => {
+      cerrarModal();
+      showToast(editId ? 'Usuario actualizado.' : 'Usuario creado correctamente.', 'success');
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 
 function eliminarUsuario(id) {
   if (!confirm('¿Eliminar este usuario? Esta acción no se puede deshacer.')) return;
-  const db = getDB();
-  db.usuarios = db.usuarios.filter(u => u.id !== id);
-  saveDB(db);
-  showToast('Usuario eliminado.', 'info');
-  render();
+  deleteUser(id)
+    .then(() => {
+      showToast('Usuario eliminado.', 'info');
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 </script>
 </body>

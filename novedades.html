@@ -83,13 +83,14 @@ function initSelects() {
   fd.value = new Date().toISOString().split('T')[0];
 }
 
-function render() {
-  const db = getDB();
-  let ausencias = [...db.ausencias].reverse();
+async function render() {
+  let ausencias = (await fetchAusencias()).ausencias.reverse();
+  window.__ausenciasCache = ausencias;
   
   // Filtros según rol
   if (session.rol === 'profesor') {
     ausencias = ausencias.filter(a => a.profesor === session.nombre);
+    window.__ausenciasCache = ausencias;
   }
 
   const stats = `
@@ -157,198 +158,36 @@ function enviarSolicitud() {
 
   if (!profesor || !fecha) { showToast('Completa todos los campos.', 'error'); return; }
 
-  const db = getDB();
-  const nuevaAusencia = {
-    id: 'aus_' + Date.now(),
-    profesor, fecha, motivo,
-    estado: 'pendiente',
-    creada: new Date().toISOString().split('T')[0],
-    solicitadoPor: session.nombre
-  };
-  db.ausencias.push(nuevaAusencia);
-  saveDB(db);
-  cerrarModal('modalSolicitud');
-  document.getElementById('solMotivo').value = '';
-  showToast('Solicitud enviada correctamente.', 'success');
-  render();
+  createAbsence({ profesor, fecha, motivo, solicitadoPor: session.nombre })
+    .then(() => {
+      cerrarModal('modalSolicitud');
+      document.getElementById('solMotivo').value = '';
+      showToast('Solicitud enviada correctamente.', 'success');
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 
 function aprobarAusencia(id) {
-  const db = getDB();
-  const aus = db.ausencias.find(a => a.id === id);
-  if (!aus) return;
-
-  aus.estado = 'aprobada';
-  aus.aprobadaPor = session.nombre;
-  aus.aprobadaEn = new Date().toISOString();
-
-  // ALGORITMO: procesar novedad
-  const resultado = procesarNovedad(db, aus);
-  aus.resultado = resultado;
-
-  // Generar información automática
-  generarInformacion(db, aus, resultado);
-
-  saveDB(db);
-  showToast('Ausencia aprobada y horario actualizado.', 'success');
-  render();
+  approveAbsence(id)
+    .then(() => {
+      showToast('Ausencia aprobada y horario actualizado.', 'success');
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 
 function rechazarAusencia(id) {
-  const db = getDB();
-  const aus = db.ausencias.find(a => a.id === id);
-  if (!aus) return;
-  aus.estado = 'rechazada';
-  saveDB(db);
-  showToast('Solicitud rechazada.', 'info');
-  render();
-}
-
-// ===================== ALGORITMO DE NOVEDADES =====================
-function procesarNovedad(db, ausencia) {
-  const { profesor, fecha } = ausencia;
-  
-  // Determinar día de la semana
-  const d = new Date(fecha + 'T12:00:00');
-  const diaIdx = d.getDay(); // 0=Dom, 1=Lun...5=Vie
-  if (diaIdx === 0 || diaIdx === 6) return { clases: [], mensaje: 'No es día hábil' };
-  const dia = DIAS[diaIdx - 1];
-
-  const horario = db.horarioNovedades;
-  const diaData = horario[dia] || {};
-
-  // Paso 1: Detectar clases del docente ese día
-  const clasesProfesor = [];
-  HORAS.forEach(hora => {
-    GRUPOS.forEach(grupo => {
-      const c = diaData[hora] && diaData[hora][grupo];
-      if (c && c.profesor === profesor) {
-        clasesProfesor.push({ hora, grupo, materia: c.materia });
-      }
-    });
-  });
-
-  if (!clasesProfesor.length) return { clases: [], mensaje: 'Sin clases ese día' };
-
-  // Paso 2 & 3: Buscar sustitutos disponibles
-  const resultado = clasesProfesor.map(clase => {
-    const horaIdx = HORAS.indexOf(clase.hora);
-    
-    // Buscar quién está libre en esa hora
-    const ocupados = new Set();
-    GRUPOS.forEach(g => {
-      const c = diaData[clase.hora] && diaData[clase.hora][g];
-      if (c) ocupados.add(c.profesor);
-    });
-
-    // Profesores disponibles (no están dando clase a esa hora)
-    const disponibles = PROFESORES.filter(p => p !== profesor && !ocupados.has(p));
-    const sustituto = disponibles[0] || null;
-
-    // Marcar en horario de novedades
-    if (horario[dia] && horario[dia][clase.hora] && horario[dia][clase.hora][clase.grupo]) {
-      if (sustituto) {
-        horario[dia][clase.hora][clase.grupo] = {
-          ...horario[dia][clase.hora][clase.grupo],
-          profesor: sustituto,
-          afectada: false,
-          entradaTarde: false,
-          salidaTemprana: false,
-          sustituye: profesor
-        };
-      } else {
-        horario[dia][clase.hora][clase.grupo].afectada = true;
-      }
-    }
-
-    return { ...clase, sustituto, dia };
-  });
-
-  // Paso 4: Optimizar (marcar entrada tardía / salida temprana por grupo)
-  const gruposAfectados = [...new Set(resultado.map(r => r.grupo))];
-  
-  gruposAfectados.forEach(grupo => {
-    const clasesGrupo = HORAS.map(h => ({
-      hora: h,
-      idx: HORAS.indexOf(h),
-      clase: diaData[h] && diaData[h][grupo]
-    })).filter(x => x.clase);
-
-    const clasesDocente = clasesProfesor.filter(c => c.grupo === grupo).map(c => HORAS.indexOf(c.hora));
-
-    if (!clasesDocente.length) return;
-    const primeraClase = Math.min(...clasesGrupo.map(c => c.idx));
-    const ultimaClase = Math.max(...clasesGrupo.map(c => c.idx));
-    const primerAusente = Math.min(...clasesDocente);
-    const ultimoAusente = Math.max(...clasesDocente);
-
-    // Si el ausente tiene la primera hora del grupo → entrada tardía
-    if (primerAusente === primeraClase && horario[dia] && horario[dia][HORAS[primeraClase]] && horario[dia][HORAS[primeraClase]][grupo]) {
-      horario[dia][HORAS[primeraClase]][grupo].entradaTarde = true;
-    }
-    // Si el ausente tiene la última hora del grupo → salida temprana
-    if (ultimoAusente === ultimaClase && horario[dia] && horario[dia][HORAS[ultimaClase]] && horario[dia][HORAS[ultimaClase]][grupo]) {
-      horario[dia][HORAS[ultimaClase]][grupo].salidaTemprana = true;
-    }
-  });
-
-  return { clases: resultado, dia, gruposAfectados };
-}
-
-function generarInformacion(db, ausencia, resultado) {
-  if (!resultado || !resultado.clases || !resultado.clases.length) return;
-
-  // Por cada grupo afectado, generar mensaje informativo
-  const gruposAfectados = resultado.gruposAfectados || [];
-  const dia = resultado.dia;
-  const d = new Date(ausencia.fecha + 'T12:00:00');
-
-  gruposAfectados.forEach(grupo => {
-    const clasesGrupo = resultado.clases.filter(c => c.grupo === grupo);
-    const primerHora = clasesGrupo[0]?.hora;
-    const ultimaHora = clasesGrupo[clasesGrupo.length-1]?.hora;
-
-    let msg = `Grupo ${grupo} el ${d.toLocaleDateString('es-CO', {weekday:'long', day:'numeric', month:'long'})}: `;
-    
-    // Detectar tipo de novedad
-    const diaData = db.horarioNovedades[dia] || {};
-    const primeraClase = HORAS.find(h => diaData[h] && diaData[h][grupo]);
-    const ultimaClase = [...HORAS].reverse().find(h => diaData[h] && diaData[h][grupo]);
-
-    if (primerHora === primeraClase) {
-      msg += `entra a las ${HORAS[HORAS.indexOf(primerHora)+clasesGrupo.length] || '7:00'} am (entrada tardía)`;
-    } else if (ultimaHora === ultimaClase) {
-      msg += `sale a las ${primerHora} (salida temprana)`;
-    } else {
-      msg += `hora libre a las ${primerHora}`;
-    }
-
-    db.informacion.push({
-      id: 'info_' + Date.now() + Math.random(),
-      fecha: ausencia.fecha,
-      grupo,
-      mensaje: msg,
-      tipo: 'novedad',
-      creada: new Date().toISOString(),
-      ausenciaId: ausencia.id,
-      profesor: ausencia.profesor
-    });
-  });
-
-  // También registrar en novedades
-  db.novedades.push({
-    id: 'nov_' + Date.now(),
-    fecha: ausencia.fecha,
-    profesor: ausencia.profesor,
-    descripcion: `Ausencia procesada. ${gruposAfectados.length} grupos afectados.`,
-    gruposAfectados,
-    tipo: 'ausencia'
-  });
+  rejectAbsence(id)
+    .then(() => {
+      showToast('Solicitud rechazada.', 'info');
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
 }
 
 function verDetalle(id) {
-  const db = getDB();
-  const aus = db.ausencias.find(a => a.id === id);
+  const aus = (window.__ausenciasCache || []).find(a => a.id === id);
   if (!aus || !aus.resultado) return;
 
   const r = aus.resultado;
@@ -359,7 +198,7 @@ function verDetalle(id) {
       <td style="font-weight:600">${c.hora}</td>
       <td>Grupo ${c.grupo}</td>
       <td>${c.materia}</td>
-      <td>${c.sustituto ? `<span style="color:var(--verde);font-weight:600">✅ ${c.sustituto}</span>` : '<span style="color:var(--rojo)">⚠️ Sin sustituto</span>'}</td>
+      <td>${c.ajuste === 'entradaTarde' ? '<span style="color:var(--verde);font-weight:600">🟢 Entrada tardía</span>' : c.ajuste === 'salidaTemprana' ? '<span style="color:var(--azul);font-weight:600">🔵 Salida temprana</span>' : '<span style="color:var(--rojo)">🔴 Clase afectada</span>'}</td>
     </tr>`).join('');
 
   document.getElementById('detalleTitle').textContent = `Ausencia de ${aus.profesor}`;
@@ -369,7 +208,7 @@ function verDetalle(id) {
     </div>
     ${clases.length ? `
     <table class="data-table">
-      <thead><tr><th>Hora</th><th>Grupo</th><th>Materia</th><th>Sustituto</th></tr></thead>
+      <thead><tr><th>Hora</th><th>Grupo</th><th>Materia</th><th>Ajuste</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>` : '<div class="empty-state"><div class="icon">📋</div><p>Sin clases ese día</p></div>'}
   `;
@@ -378,7 +217,7 @@ function verDetalle(id) {
 }
 
 initSelects();
-render();
+render().catch(error => showToast(error.message, 'error'));
 </script>
 </body>
 </html>

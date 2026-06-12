@@ -28,48 +28,14 @@ document.getElementById('fechaHoy').textContent = new Date().toLocaleDateString(
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 });
 
-function render() {
-  const db = getDB();
-  const hoy = new Date().toISOString().split('T')[0];
-  const novedadesHoy = db.novedades.filter(n => n.fecha === hoy).length;
-  const ausenciasPendientes = db.ausencias.filter(a => a.estado === 'pendiente').length;
-  const ausenciasTotal = db.ausencias.length;
+async function render() {
+  const data = await fetchDashboard();
+  const { resumen, ausenciasPorMes, docentesConMasAusencias, gruposMasAfectados, novedadesRecientes } = data;
+  const maxBar = Math.max(...Object.values(ausenciasPorMes), 1);
+  const maxProf = docentesConMasAusencias.length ? docentesConMasAusencias[0][1] : 1;
+  const maxGrupo = gruposMasAfectados.length ? gruposMasAfectados[0][1] : 1;
 
-  // Ausencias por mes (últimos 6 meses)
-  const meses = {};
-  for (let i = 5; i >= 0; i--) {
-    const d = new Date();
-    d.setMonth(d.getMonth() - i);
-    const key = d.toLocaleDateString('es-CO', { month: 'short', year: '2-digit' });
-    meses[key] = 0;
-  }
-  db.ausencias.forEach(a => {
-    if (!a.fecha) return;
-    const d = new Date(a.fecha);
-    const key = d.toLocaleDateString('es-CO', { month: 'short', year: '2-digit' });
-    if (meses[key] !== undefined) meses[key]++;
-  });
-  const maxBar = Math.max(...Object.values(meses), 1);
-
-  // Profesores con más novedades
-  const profCount = {};
-  db.ausencias.forEach(a => {
-    profCount[a.profesor] = (profCount[a.profesor] || 0) + 1;
-  });
-  const topProfs = Object.entries(profCount).sort((a,b) => b[1]-a[1]).slice(0, 6);
-  const maxProf = topProfs.length ? topProfs[0][1] : 1;
-
-  // Grupos más afectados
-  const grupoCount = {};
-  db.novedades.forEach(n => {
-    if (n.gruposAfectados) n.gruposAfectados.forEach(g => {
-      grupoCount[g] = (grupoCount[g] || 0) + 1;
-    });
-  });
-  const topGrupos = Object.entries(grupoCount).sort((a,b) => b[1]-a[1]).slice(0, 6);
-  const maxGrupo = topGrupos.length ? topGrupos[0][1] : 1;
-
-  const barsMeses = Object.entries(meses).map(([k,v]) => `
+  const barsMeses = Object.entries(ausenciasPorMes).map(([k,v]) => `
     <div class="chart-bar-row">
       <div class="chart-bar-label">${k}</div>
       <div class="chart-bar-track">
@@ -78,7 +44,7 @@ function render() {
       <div class="chart-bar-val">${v}</div>
     </div>`).join('');
 
-  const barsProfs = topProfs.length ? topProfs.map(([p,v]) => `
+  const barsProfs = docentesConMasAusencias.length ? docentesConMasAusencias.map(([p,v]) => `
     <div class="chart-bar-row">
       <div class="chart-bar-label" title="${p}">${p}</div>
       <div class="chart-bar-track">
@@ -87,7 +53,7 @@ function render() {
       <div class="chart-bar-val">${v}</div>
     </div>`).join('') : '<div class="empty-state" style="padding:30px"><div class="icon">📊</div><p>Sin datos aún</p></div>';
 
-  const barsGrupos = topGrupos.length ? topGrupos.map(([g,v]) => `
+  const barsGrupos = gruposMasAfectados.length ? gruposMasAfectados.map(([g,v]) => `
     <div class="chart-bar-row">
       <div class="chart-bar-label">Grupo ${g}</div>
       <div class="chart-bar-track">
@@ -96,9 +62,7 @@ function render() {
       <div class="chart-bar-val">${v}</div>
     </div>`).join('') : '<div class="empty-state" style="padding:30px"><div class="icon">📊</div><p>Sin datos aún</p></div>';
 
-  // Últimas novedades
-  const ultimasNovedades = [...db.novedades].reverse().slice(0,4);
-  const novedadesHTML = ultimasNovedades.length ? ultimasNovedades.map(n => `
+  const novedadesHTML = novedadesRecientes.length ? novedadesRecientes.map(n => `
     <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--gris-medio)">
       <span style="font-size:20px">📋</span>
       <div style="flex:1">
@@ -112,19 +76,19 @@ function render() {
     <div class="stat-grid">
       <div class="stat-card">
         <div class="stat-icon blue">🏫</div>
-        <div class="stat-info"><div class="value">${GRUPOS.length}</div><div class="label">Grupos activos</div></div>
+        <div class="stat-info"><div class="value">${resumen.gruposActivos}</div><div class="label">Grupos activos</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon green">👩‍🏫</div>
-        <div class="stat-info"><div class="value">${PROFESORES.length}</div><div class="label">Docentes</div></div>
+        <div class="stat-info"><div class="value">${resumen.docentes}</div><div class="label">Docentes</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon red">⚠️</div>
-        <div class="stat-info"><div class="value">${ausenciasPendientes}</div><div class="label">Ausencias pendientes</div></div>
+        <div class="stat-info"><div class="value">${resumen.ausenciasPendientes}</div><div class="label">Ausencias pendientes</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon yellow">📋</div>
-        <div class="stat-info"><div class="value">${novedadesHoy}</div><div class="label">Novedades hoy</div></div>
+        <div class="stat-info"><div class="value">${resumen.novedadesHoy}</div><div class="label">Novedades hoy</div></div>
       </div>
     </div>
 
@@ -156,7 +120,9 @@ function render() {
   `;
 }
 
-render();
+render().catch(error => {
+  showToast(error.message, 'error');
+});
 </script>
 </body>
 </html>

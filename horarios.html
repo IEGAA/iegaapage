@@ -23,13 +23,122 @@
 <script src="js/layout.js"></script>
 <script>
 const session = renderLayout('horarios');
+const canEditBase = session.rol === 'administrador' || session.rol === 'coordinador';
 let tabActivo = 'novedades';
 let diaActivo = DIAS[0];
 let grupoFiltro = '';
+let horarioActual = null;
+let editorState = { dia: DIAS[0], hora: HORAS[0], grupo: GRUPOS[0] };
 
-function render() {
-  const db = getDB();
-  const horario = tabActivo === 'base' ? db.horarioBase : db.horarioNovedades;
+document.body.insertAdjacentHTML('beforeend', `
+  <div class="modal-overlay" id="modalHorarioBase">
+    <div class="modal" style="max-width:720px">
+      <div class="modal-header">
+        <h3>Editar horario base</h3>
+        <button class="modal-close" onclick="cerrarModalHorarioBase()">✕</button>
+      </div>
+      <div class="form-row">
+        <div class="form-group-app">
+          <label>Día</label>
+          <select id="edDia"></select>
+        </div>
+        <div class="form-group-app">
+          <label>Hora</label>
+          <select id="edHora"></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group-app">
+          <label>Grupo</label>
+          <select id="edGrupo"></select>
+        </div>
+        <div class="form-group-app">
+          <label>Aula</label>
+          <input type="text" id="edAula" placeholder="Ej: A-204">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group-app">
+          <label>Profesor</label>
+          <select id="edProfesor"></select>
+        </div>
+        <div class="form-group-app">
+          <label>Materia</label>
+          <select id="edMateria"></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="cerrarModalHorarioBase()">Cancelar</button>
+        <button class="btn btn-azul" onclick="guardarHorarioBase()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+`);
+
+function initEditorSelects() {
+  setOptions('edDia', DIAS);
+  setOptions('edHora', HORAS);
+  setOptions('edGrupo', GRUPOS);
+  setOptions('edProfesor', PROFESORES);
+  setOptions('edMateria', MATERIAS);
+}
+
+function setOptions(id, values) {
+  const select = document.getElementById(id);
+  if (!select) return;
+  select.innerHTML = values.map(value => `<option value="${value}">${value}</option>`).join('');
+}
+
+function syncEditorState() {
+  document.getElementById('edDia').value = editorState.dia;
+  document.getElementById('edHora').value = editorState.hora;
+  document.getElementById('edGrupo').value = editorState.grupo;
+  const slot = horarioActual?.[editorState.dia]?.[editorState.hora]?.[editorState.grupo] || {};
+  document.getElementById('edProfesor').value = slot.profesor || PROFESORES[0];
+  document.getElementById('edMateria').value = slot.materia || MATERIAS[0];
+  document.getElementById('edAula').value = slot.aula || '';
+}
+
+function openHorarioEditor(dia = editorState.dia, hora = editorState.hora, grupo = editorState.grupo) {
+  if (!canEditBase) return;
+  editorState = { dia, hora, grupo };
+  initEditorSelects();
+  syncEditorState();
+  document.getElementById('modalHorarioBase').classList.add('open');
+}
+
+function cerrarModalHorarioBase() {
+  document.getElementById('modalHorarioBase').classList.remove('open');
+}
+
+function guardarHorarioBase() {
+  const dia = document.getElementById('edDia').value;
+  const hora = document.getElementById('edHora').value;
+  const grupo = document.getElementById('edGrupo').value;
+  const profesor = document.getElementById('edProfesor').value;
+  const materia = document.getElementById('edMateria').value;
+  const aula = document.getElementById('edAula').value.trim();
+
+  if (!dia || !hora || !grupo || !profesor || !materia) {
+    showToast('Completa los campos obligatorios.', 'error');
+    return;
+  }
+
+  apiJson('/api/horarios/base', {
+    method: 'PUT',
+    body: JSON.stringify({ dia, hora, grupo, profesor, materia, aula })
+  })
+    .then(() => {
+      showToast('Horario base actualizado.', 'success');
+      cerrarModalHorarioBase();
+      return render();
+    })
+    .catch(error => showToast(error.message, 'error'));
+}
+
+async function render() {
+  const horario = (await fetchHorarios(tabActivo === 'base' ? 'base' : 'novedades')).horario;
+  horarioActual = horario;
 
   const tabs = `
     <div class="tabs">
@@ -44,8 +153,14 @@ function render() {
 
   let content = '';
 
+  const baseActions = tabActivo === 'base' && canEditBase ? `
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:13px;color:var(--gris-texto)">Haz clic en una celda para editar profesor, materia y aula.</div>
+      <button class="btn btn-azul" onclick="openHorarioEditor()">✚ Editar horario base</button>
+    </div>` : '';
+
   if (tabActivo === 'profesores') {
-    content = renderPorProfesor(horario);
+    content = renderPorProfesor();
   } else {
     // Grupos mostrados (máx 12 para que cargue bien)
     const gruposMostrar = grupoFiltro ? [grupoFiltro] : GRUPOS.slice(0,10);
@@ -75,16 +190,20 @@ function render() {
       const cells = gruposMostrar.map(grupo => {
         const clase = (diaData[hora] || {})[grupo];
         if (!clase) return '<td>—</td>';
+        const aula = clase.aula ? `<div class="aula">Aula ${clase.aula}</div>` : '';
         let cssClass = 'celda-normal';
         if (clase.afectada) cssClass = 'celda-afectada';
         else if (clase.entradaTarde) cssClass = 'celda-entrada-tarde';
         else if (clase.salidaTemprana) cssClass = 'celda-salida-temprana';
-        return `<td><div class="celda-clase ${cssClass}"><div class="prof">${clase.profesor}</div><div class="mat">${clase.materia}</div></div></td>`;
+        const editable = tabActivo === 'base' && canEditBase ? 'editable-cell' : '';
+        const clickAction = tabActivo === 'base' && canEditBase ? `onclick="openHorarioEditor('${diaActivo}','${hora}','${grupo}')"` : '';
+        return `<td ${clickAction} class="${editable}"><div class="celda-clase ${cssClass}"><div class="prof">${clase.profesor}</div><div class="mat">${clase.materia}</div>${aula}</div></td>`;
       }).join('');
       return `<tr><td style="font-weight:700;white-space:nowrap;color:var(--azul)">${hora}</td>${cells}</tr>`;
     }).join('');
 
     content = `
+      ${baseActions}
       <div class="selector-bar">
         ${diasChips}
         ${grupoSelect}
@@ -103,7 +222,7 @@ function render() {
   document.getElementById('pageContent').innerHTML = tabs + content;
 }
 
-function renderPorProfesor(horario) {
+function renderPorProfesor() {
   const profSelect = `
     <div style="margin-bottom:20px">
       <select id="profSel" onchange="renderProfesorHorario()" style="padding:10px 16px;border:2px solid var(--gris-medio);border-radius:var(--radio-sm);font-size:14px;font-family:var(--font);outline:none;min-width:250px">
@@ -116,8 +235,6 @@ function renderPorProfesor(horario) {
 }
 
 function renderProfesorHorario() {
-  const db = getDB();
-  const horario = db.horarioNovedades;
   const prof = document.getElementById('profSel').value;
   if (!prof) return;
 
@@ -125,9 +242,9 @@ function renderProfesorHorario() {
   DIAS.forEach(dia => {
     HORAS.forEach(hora => {
       GRUPOS.forEach(grupo => {
-        const c = (horario[dia] && horario[dia][hora] && horario[dia][hora][grupo]);
+        const c = (horarioActual[dia] && horarioActual[dia][hora] && horarioActual[dia][hora][grupo]);
         if (c && c.profesor === prof) {
-          rows.push({ dia, hora, grupo, materia: c.materia, afectada: c.afectada });
+          rows.push({ dia, hora, grupo, materia: c.materia, aula: c.aula || '', afectada: c.afectada });
         }
       });
     });
@@ -152,7 +269,7 @@ function renderProfesorHorario() {
           ${clases.map(c => `
             <div style="background:${c.afectada?'var(--rojo-claro)':'var(--azul-claro)'};border-radius:8px;padding:8px 14px">
               <div style="font-weight:700;font-size:13px">${c.hora}</div>
-              <div style="font-size:12px;color:var(--gris-texto)">Grupo ${c.grupo} — ${c.materia}</div>
+              <div style="font-size:12px;color:var(--gris-texto)">Grupo ${c.grupo} — ${c.materia}${c.aula ? ` · Aula ${c.aula}` : ''}</div>
             </div>`).join('')}
         </div>
       </div>`;
@@ -163,7 +280,8 @@ function setTab(t) { tabActivo = t; render(); }
 function setDia(d) { diaActivo = d; render(); }
 function setGrupo(g) { grupoFiltro = g; render(); }
 
-render();
+initEditorSelects();
+render().catch(error => showToast(error.message, 'error'));
 </script>
 </body>
 </html>

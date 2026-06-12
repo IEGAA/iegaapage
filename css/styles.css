@@ -110,6 +110,16 @@ body {
   transition: transform .3s;
 }
 
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 90;
+  transition: opacity .25s ease;
+}
+
 .sidebar-header {
   padding: 24px 20px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.12);
@@ -197,6 +207,23 @@ body {
 
 .topbar-actions { display: flex; align-items: center; gap: 10px; }
 
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  background: var(--gris-claro);
+  color: var(--texto);
+  cursor: pointer;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.menu-toggle:hover { background: var(--gris-medio); }
+
 .page-content { padding: 28px; flex: 1; }
 
 /* ===================== CARDS ===================== */
@@ -276,6 +303,10 @@ body {
 }
 .celda-clase .prof { font-weight: 600; }
 .celda-clase .mat { opacity: 0.7; font-size: 11px; }
+.celda-clase .aula { font-size: 10px; opacity: 0.78; margin-top: 2px; }
+
+.editable-cell { cursor: pointer; }
+.editable-cell:hover .celda-clase { box-shadow: 0 0 0 2px rgba(26, 86, 160, 0.18) inset; }
 
 .celda-normal { background: var(--azul-claro); color: var(--azul-oscuro); }
 .celda-afectada { background: #fee2e2; color: #991b1b; }
@@ -488,10 +519,15 @@ body {
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
   .main-content { margin-left: 0; }
   .form-row { grid-template-columns: 1fr; }
   .stat-grid { grid-template-columns: 1fr 1fr; }
   .page-content { padding: 16px; }
+  .menu-toggle { display: inline-flex; }
+  .topbar { padding: 14px 16px; }
+  .topbar-title h2 { font-size: 18px; }
+  body.sidebar-open { overflow: hidden; }
 }
 
 /* ===================== SCROLLBAR ===================== */

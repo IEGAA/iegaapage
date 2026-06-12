@@ -41,16 +41,13 @@
   function login() {
     const usuario = document.getElementById('usuario').value.trim();
     const contrasena = document.getElementById('contrasena').value.trim();
-    const db = getDB();
-    const user = db.usuarios.find(u => u.usuario === usuario && u.contrasena === contrasena);
-    if (user) {
-      setSession(user);
-      window.location.href = 'dashboard.html';
-    } else {
-      const err = document.getElementById('errorMsg');
-      err.style.display = 'block';
-      setTimeout(() => err.style.display = 'none', 3000);
-    }
+    loginWithApi(usuario, contrasena)
+      .then(() => { window.location.href = 'dashboard.html'; })
+      .catch(() => {
+        const err = document.getElementById('errorMsg');
+        err.style.display = 'block';
+        setTimeout(() => err.style.display = 'none', 3000);
+      });
   }
 </script>
 </body>

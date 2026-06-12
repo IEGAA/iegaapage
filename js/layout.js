@@ -13,16 +13,13 @@ function renderLayout(pageId) {
     { id: 'usuarios', icon: '👥', label: 'Usuarios', href: 'usuarios.html', roles: ['administrador'] },
   ];
 
-  const db = getDB();
-  const pendientes = db.ausencias.filter(a => a.estado === 'pendiente').length;
-
   const navItems = nav
     .filter(n => n.roles.includes(session.rol))
     .map(n => `
-      <button class="nav-item ${n.id === pageId ? 'active' : ''}" onclick="window.location.href='${n.href}'">
+      <button class="nav-item ${n.id === pageId ? 'active' : ''}" onclick="navigateTo('${n.href}')">
         <span class="nav-icon">${n.icon}</span>
         <span>${n.label}</span>
-        ${n.id === 'novedades' && pendientes > 0 ? `<span class="nav-badge">${pendientes}</span>` : ''}
+        ${n.id === 'novedades' ? '<span class="nav-badge" data-pending-badge style="display:none"></span>' : ''}
       </button>
     `).join('');
 
@@ -55,18 +52,69 @@ function renderLayout(pageId) {
     </aside>
   `;
 
+  const overlay = '<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>';
+
   // Inject sidebar
   document.body.insertAdjacentHTML('afterbegin', sidebar);
+
+  // Inject mobile overlay
+  document.body.insertAdjacentHTML('afterbegin', overlay);
+
+  // Inject mobile menu button in the topbar
+  const topbar = document.querySelector('.topbar');
+  if (topbar && !topbar.querySelector('.menu-toggle')) {
+    topbar.insertAdjacentHTML('afterbegin', '<button class="menu-toggle" type="button" aria-label="Abrir navegación" onclick="toggleSidebar()">☰</button>');
+  }
 
   // Toast container
   document.body.insertAdjacentHTML('beforeend', '<div class="toast-container" id="toastContainer"></div>');
 
+  document.addEventListener('keydown', handleSidebarKeys);
+  updatePendingBadge();
+
   return session;
 }
 
-function logout() {
-  clearSession();
-  window.location.href = 'index.html';
+async function updatePendingBadge() {
+  const badge = document.querySelector('[data-pending-badge]');
+  if (!badge) return;
+  try {
+    const data = await fetchDashboard();
+    const pendientes = data?.resumen?.ausenciasPendientes || 0;
+    if (pendientes > 0) {
+      badge.textContent = pendientes;
+      badge.style.display = 'inline-flex';
+      badge.classList.add('nav-badge');
+    } else {
+      badge.style.display = 'none';
+    }
+  } catch {
+    badge.style.display = 'none';
+  }
+}
+
+function handleSidebarKeys(event) {
+  if (event.key === 'Escape') closeSidebar();
+}
+
+function toggleSidebar(forceOpen) {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (!sidebar || !overlay) return;
+
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', shouldOpen);
+  overlay.classList.toggle('open', shouldOpen);
+  document.body.classList.toggle('sidebar-open', shouldOpen);
+}
+
+function closeSidebar() {
+  toggleSidebar(false);
+}
+
+function navigateTo(href) {
+  closeSidebar();
+  window.location.href = href;
 }
 
 function showToast(msg, type = 'success') {
