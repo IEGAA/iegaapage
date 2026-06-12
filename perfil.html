@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil — Plataforma Educativa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title"><h2>Mi Perfil</h2><p>Información de cuenta y seguridad</p></div>
+    </div>
+    <div class="page-content" id="pageContent"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script>
+const session = renderLayout('perfil');
+
+function render() {
+  const initials = session.nombre.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+
+  document.getElementById('pageContent').innerHTML = `
+    <div class="perfil-header">
+      <div class="perfil-avatar">${initials}</div>
+      <div class="perfil-nombre">
+        <h2>${session.nombre}</h2>
+        <p>${rolLabel(session.rol)} · ${session.usuario}</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:20px">📋 Información de cuenta</h3>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div>
+            <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">NOMBRE COMPLETO</div>
+            <div style="font-size:15px;font-weight:600">${session.nombre}</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">USUARIO</div>
+            <div style="font-size:15px;font-weight:600;font-family:monospace">${session.usuario}</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">ROL</div>
+            <span class="rol-badge rol-${session.rol}">${rolLabel(session.rol)}</span>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--gris-texto);font-weight:600;margin-bottom:4px">CORREO</div>
+            <div style="font-size:15px">${session.email || 'No registrado'}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:20px">🔐 Cambiar contraseña</h3>
+        <div class="form-group-app">
+          <label>Contraseña actual</label>
+          <input type="password" id="passActual" placeholder="Tu contraseña actual">
+        </div>
+        <div class="form-group-app">
+          <label>Nueva contraseña</label>
+          <input type="password" id="passNueva" placeholder="Nueva contraseña">
+        </div>
+        <div class="form-group-app">
+          <label>Confirmar nueva contraseña</label>
+          <input type="password" id="passConfirm" placeholder="Repite la nueva contraseña">
+        </div>
+        <button class="btn btn-azul" onclick="cambiarContrasena()">Actualizar contraseña</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">⚙️ Permisos del rol</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+        ${getPermisosRol(session.rol).map(p => `
+          <div style="display:flex;align-items:center;gap:10px;padding:12px;background:var(--gris-claro);border-radius:8px">
+            <span style="font-size:18px">${p.ok ? '✅' : '🔒'}</span>
+            <span style="font-size:13px;font-weight:${p.ok?'600':'400'};color:${p.ok?'var(--texto)':'var(--gris-texto)'}">${p.label}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function getPermisosRol(rol) {
+  const todos = [
+    { label: 'Ver dashboard', roles: ['administrador','coordinador','profesor'] },
+    { label: 'Ver horarios', roles: ['administrador','coordinador','profesor'] },
+    { label: 'Solicitar ausencia', roles: ['administrador','coordinador','profesor'] },
+    { label: 'Ver información', roles: ['administrador','coordinador','profesor'] },
+    { label: 'Aprobar ausencias', roles: ['administrador','coordinador'] },
+    { label: 'Gestionar novedades', roles: ['administrador','coordinador'] },
+    { label: 'Ver todos los usuarios', roles: ['administrador'] },
+    { label: 'Crear usuarios', roles: ['administrador'] },
+    { label: 'Modificar horario base', roles: ['administrador'] },
+    { label: 'Eliminar registros', roles: ['administrador'] },
+  ];
+  return todos.map(p => ({ label: p.label, ok: p.roles.includes(rol) }));
+}
+
+function cambiarContrasena() {
+  const actual = document.getElementById('passActual').value;
+  const nueva = document.getElementById('passNueva').value;
+  const confirm = document.getElementById('passConfirm').value;
+
+  if (!actual || !nueva || !confirm) { showToast('Completa todos los campos.', 'error'); return; }
+  if (nueva !== confirm) { showToast('Las contraseñas no coinciden.', 'error'); return; }
+  if (nueva.length < 6) { showToast('La contraseña debe tener mínimo 6 caracteres.', 'error'); return; }
+
+  const db = getDB();
+  const user = db.usuarios.find(u => u.id === session.id);
+  if (!user || user.contrasena !== actual) { showToast('Contraseña actual incorrecta.', 'error'); return; }
+
+  user.contrasena = nueva;
+  saveDB(db);
+  setSession({ ...session, contrasena: nueva });
+  document.getElementById('passActual').value = '';
+  document.getElementById('passNueva').value = '';
+  document.getElementById('passConfirm').value = '';
+  showToast('Contraseña actualizada correctamente.', 'success');
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horarios — Plataforma Educativa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content" id="mainContent">
+    <div class="topbar">
+      <div class="topbar-title">
+        <h2>Horarios</h2>
+        <p>Visualización por día y grupos</p>
+      </div>
+    </div>
+    <div class="page-content" id="pageContent"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script>
+const session = renderLayout('horarios');
+let tabActivo = 'novedades';
+let diaActivo = DIAS[0];
+let grupoFiltro = '';
+
+function render() {
+  const db = getDB();
+  const horario = tabActivo === 'base' ? db.horarioBase : db.horarioNovedades;
+
+  const tabs = `
+    <div class="tabs">
+      <button class="tab-btn ${tabActivo==='novedades'?'active':''}" onclick="setTab('novedades')">📋 Horario del día</button>
+      <button class="tab-btn ${tabActivo==='base'?'active':''}" onclick="setTab('base')">📌 Horario base</button>
+      ${session.rol==='administrador' ? `<button class="tab-btn ${tabActivo==='profesores'?'active':''}" onclick="setTab('profesores')">👨‍🏫 Por docente</button>` : ''}
+    </div>`;
+
+  const diasChips = DIAS.map(d => `
+    <button class="chip ${d===diaActivo?'active':''}" onclick="setDia('${d}')">${d}</button>
+  `).join('');
+
+  let content = '';
+
+  if (tabActivo === 'profesores') {
+    content = renderPorProfesor(horario);
+  } else {
+    // Grupos mostrados (máx 12 para que cargue bien)
+    const gruposMostrar = grupoFiltro ? [grupoFiltro] : GRUPOS.slice(0,10);
+    
+    const grupoSelect = `
+      <select onchange="setGrupo(this.value)" style="padding:8px 14px;border:2px solid var(--gris-medio);border-radius:var(--radio-sm);font-size:13px;font-family:var(--font);outline:none;cursor:pointer">
+        <option value="">Todos los grupos (10 primeros)</option>
+        ${GRUPOS.map(g => `<option value="${g}" ${g===grupoFiltro?'selected':''}>${g}</option>`).join('')}
+      </select>`;
+
+    const leyenda = `
+      <div class="leyenda">
+        <div class="leyenda-item"><div class="leyenda-dot" style="background:#bfdbfe"></div> Normal</div>
+        <div class="leyenda-item"><div class="leyenda-dot" style="background:#bbf7d0"></div> 🟢 Entrada tardía</div>
+        <div class="leyenda-item"><div class="leyenda-dot" style="background:#bfdbfe"></div> 🔵 Salida temprana</div>
+        <div class="leyenda-item"><div class="leyenda-dot" style="background:#fecaca"></div> 🔴 Clase afectada</div>
+      </div>`;
+
+    const diaData = horario[diaActivo] || {};
+
+    const thead = `<tr>
+      <th>Hora</th>
+      ${gruposMostrar.map(g => `<th>${g}</th>`).join('')}
+    </tr>`;
+
+    const rows = HORAS.map(hora => {
+      const cells = gruposMostrar.map(grupo => {
+        const clase = (diaData[hora] || {})[grupo];
+        if (!clase) return '<td>—</td>';
+        let cssClass = 'celda-normal';
+        if (clase.afectada) cssClass = 'celda-afectada';
+        else if (clase.entradaTarde) cssClass = 'celda-entrada-tarde';
+        else if (clase.salidaTemprana) cssClass = 'celda-salida-temprana';
+        return `<td><div class="celda-clase ${cssClass}"><div class="prof">${clase.profesor}</div><div class="mat">${clase.materia}</div></div></td>`;
+      }).join('');
+      return `<tr><td style="font-weight:700;white-space:nowrap;color:var(--azul)">${hora}</td>${cells}</tr>`;
+    }).join('');
+
+    content = `
+      <div class="selector-bar">
+        ${diasChips}
+        ${grupoSelect}
+      </div>
+      ${leyenda}
+      <div class="card" style="padding:0">
+        <div class="horario-wrap">
+          <table class="horario-table">
+            <thead>${thead}</thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('pageContent').innerHTML = tabs + content;
+}
+
+function renderPorProfesor(horario) {
+  const profSelect = `
+    <div style="margin-bottom:20px">
+      <select id="profSel" onchange="renderProfesorHorario()" style="padding:10px 16px;border:2px solid var(--gris-medio);border-radius:var(--radio-sm);font-size:14px;font-family:var(--font);outline:none;min-width:250px">
+        <option value="">Seleccionar docente...</option>
+        ${PROFESORES.map(p => `<option value="${p}">${p}</option>`).join('')}
+      </select>
+    </div>
+    <div id="profHorarioWrap"></div>`;
+  return profSelect;
+}
+
+function renderProfesorHorario() {
+  const db = getDB();
+  const horario = db.horarioNovedades;
+  const prof = document.getElementById('profSel').value;
+  if (!prof) return;
+
+  const rows = [];
+  DIAS.forEach(dia => {
+    HORAS.forEach(hora => {
+      GRUPOS.forEach(grupo => {
+        const c = (horario[dia] && horario[dia][hora] && horario[dia][hora][grupo]);
+        if (c && c.profesor === prof) {
+          rows.push({ dia, hora, grupo, materia: c.materia, afectada: c.afectada });
+        }
+      });
+    });
+  });
+
+  const wrap = document.getElementById('profHorarioWrap');
+  if (!rows.length) {
+    wrap.innerHTML = '<div class="empty-state"><div class="icon">📅</div><h3>Sin clases asignadas</h3></div>';
+    return;
+  }
+
+  const byDia = {};
+  DIAS.forEach(d => byDia[d] = rows.filter(r => r.dia === d));
+
+  wrap.innerHTML = DIAS.map(dia => {
+    const clases = byDia[dia];
+    if (!clases.length) return '';
+    return `
+      <div style="margin-bottom:16px">
+        <h4 style="font-size:14px;font-weight:700;color:var(--azul);margin-bottom:8px">${dia}</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          ${clases.map(c => `
+            <div style="background:${c.afectada?'var(--rojo-claro)':'var(--azul-claro)'};border-radius:8px;padding:8px 14px">
+              <div style="font-weight:700;font-size:13px">${c.hora}</div>
+              <div style="font-size:12px;color:var(--gris-texto)">Grupo ${c.grupo} — ${c.materia}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function setTab(t) { tabActivo = t; render(); }
+function setDia(d) { diaActivo = d; render(); }
+function setGrupo(g) { grupoFiltro = g; render(); }
+
+render();
+</script>
+</body>
+</html>

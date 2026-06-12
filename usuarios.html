@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuarios — Plataforma Educativa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title"><h2>Gestión de Usuarios</h2><p>Crear, editar y administrar cuentas</p></div>
+      <div class="topbar-actions">
+        <button class="btn btn-verde" onclick="abrirModal()">✚ Nuevo usuario</button>
+      </div>
+    </div>
+    <div class="page-content" id="pageContent"></div>
+  </div>
+</div>
+
+<!-- Modal Crear/Editar Usuario -->
+<div class="modal-overlay" id="modalUsuario">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Nuevo usuario</h3>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+    </div>
+    <input type="hidden" id="editId">
+    <div class="form-row">
+      <div class="form-group-app">
+        <label>Nombre completo</label>
+        <input type="text" id="uNombre" placeholder="Nombre del usuario">
+      </div>
+      <div class="form-group-app">
+        <label>Usuario (ID)</label>
+        <input type="text" id="uUsuario" placeholder="ej: 1034918343">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group-app">
+        <label>Contraseña</label>
+        <input type="text" id="uContrasena" placeholder="Contraseña inicial">
+      </div>
+      <div class="form-group-app">
+        <label>Rol</label>
+        <select id="uRol">
+          <option value="profesor">Profesor</option>
+          <option value="coordinador">Coordinador</option>
+          <option value="administrador">Administrador</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group-app">
+      <label>Correo electrónico</label>
+      <input type="email" id="uEmail" placeholder="correo@colegio.edu.co">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn btn-azul" onclick="guardarUsuario()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script>
+const session = renderLayout('usuarios');
+
+// Solo administrador puede acceder
+if (session && session.rol !== 'administrador') {
+  document.getElementById('pageContent').innerHTML = `
+    <div class="card"><div class="empty-state">
+      <div class="icon">🔒</div>
+      <h3>Acceso restringido</h3>
+      <p>Solo los administradores pueden gestionar usuarios.</p>
+    </div></div>`;
+} else {
+  render();
+}
+
+function render() {
+  const db = getDB();
+  const usuarios = db.usuarios;
+
+  const rows = usuarios.map(u => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="user-avatar" style="width:32px;height:32px;font-size:13px;background:linear-gradient(135deg,var(--azul),var(--verde))">
+            ${u.nombre.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}
+          </div>
+          <div>
+            <div style="font-weight:600;font-size:14px">${u.nombre}</div>
+            <div style="font-size:12px;color:var(--gris-texto)">${u.email || 'Sin correo'}</div>
+          </div>
+        </div>
+      </td>
+      <td style="font-family:monospace;font-size:13px">${u.usuario}</td>
+      <td><span class="rol-badge rol-${u.rol}">${rolLabel(u.rol)}</span></td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-sm btn-ghost" onclick="editarUsuario(${u.id})">✏️ Editar</button>
+          ${u.id !== session.id ? `<button class="btn btn-sm btn-rojo" onclick="eliminarUsuario(${u.id})">🗑️</button>` : '<span style="font-size:12px;color:var(--gris-texto);padding:6px">Cuenta propia</span>'}
+        </div>
+      </td>
+    </tr>`).join('');
+
+  document.getElementById('pageContent').innerHTML = `
+    <div class="card" style="padding:0">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--gris-medio);display:flex;justify-content:space-between;align-items:center">
+        <h3 style="font-size:15px;font-weight:700">Usuarios registrados</h3>
+        <span style="font-size:13px;color:var(--gris-texto)">${usuarios.length} usuarios</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>ID / Usuario</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function abrirModal(id) {
+  document.getElementById('editId').value = '';
+  document.getElementById('uNombre').value = '';
+  document.getElementById('uUsuario').value = '';
+  document.getElementById('uContrasena').value = '';
+  document.getElementById('uRol').value = 'profesor';
+  document.getElementById('uEmail').value = '';
+  document.getElementById('modalTitle').textContent = 'Nuevo usuario';
+  document.getElementById('modalUsuario').classList.add('open');
+}
+
+function editarUsuario(id) {
+  const db = getDB();
+  const u = db.usuarios.find(x => x.id === id);
+  if (!u) return;
+  document.getElementById('editId').value = u.id;
+  document.getElementById('uNombre').value = u.nombre;
+  document.getElementById('uUsuario').value = u.usuario;
+  document.getElementById('uContrasena').value = u.contrasena;
+  document.getElementById('uRol').value = u.rol;
+  document.getElementById('uEmail').value = u.email || '';
+  document.getElementById('modalTitle').textContent = 'Editar usuario';
+  document.getElementById('modalUsuario').classList.add('open');
+}
+
+function cerrarModal() {
+  document.getElementById('modalUsuario').classList.remove('open');
+}
+
+function guardarUsuario() {
+  const nombre = document.getElementById('uNombre').value.trim();
+  const usuario = document.getElementById('uUsuario').value.trim();
+  const contrasena = document.getElementById('uContrasena').value.trim();
+  const rol = document.getElementById('uRol').value;
+  const email = document.getElementById('uEmail').value.trim();
+  const editId = document.getElementById('editId').value;
+
+  if (!nombre || !usuario || !contrasena) { showToast('Completa todos los campos requeridos.', 'error'); return; }
+
+  const db = getDB();
+
+  if (editId) {
+    const u = db.usuarios.find(x => x.id === parseInt(editId));
+    if (u) { Object.assign(u, { nombre, usuario, contrasena, rol, email }); }
+  } else {
+    // Verificar usuario único
+    if (db.usuarios.find(u => u.usuario === usuario)) { showToast('Ese usuario ya existe.', 'error'); return; }
+    db.usuarios.push({ id: Date.now(), nombre, usuario, contrasena, rol, email });
+  }
+
+  saveDB(db);
+  cerrarModal();
+  showToast(editId ? 'Usuario actualizado.' : 'Usuario creado correctamente.', 'success');
+  render();
+}
+
+function eliminarUsuario(id) {
+  if (!confirm('¿Eliminar este usuario? Esta acción no se puede deshacer.')) return;
+  const db = getDB();
+  db.usuarios = db.usuarios.filter(u => u.id !== id);
+  saveDB(db);
+  showToast('Usuario eliminado.', 'info');
+  render();
+}
+</script>
+</body>
+</html>

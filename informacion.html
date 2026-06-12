@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información — Plataforma Educativa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title"><h2>Información del día</h2><p>Cambios y novedades generados automáticamente</p></div>
+      <div class="topbar-actions">
+        <input type="date" id="fechaFiltro" style="padding:8px 14px;border:2px solid var(--gris-medio);border-radius:var(--radio-sm);font-size:13px;font-family:var(--font);outline:none" onchange="render()">
+      </div>
+    </div>
+    <div class="page-content" id="pageContent"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script>
+const session = renderLayout('informacion');
+
+// Fecha por defecto: hoy
+document.getElementById('fechaFiltro').value = new Date().toISOString().split('T')[0];
+
+function render() {
+  const db = getDB();
+  const fecha = document.getElementById('fechaFiltro').value;
+  const infos = db.informacion.filter(i => i.fecha === fecha);
+  const ausenciasHoy = db.ausencias.filter(a => a.fecha === fecha && a.estado === 'aprobada');
+
+  const fechaLabel = fecha ? new Date(fecha + 'T12:00:00').toLocaleDateString('es-CO', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  }) : '';
+
+  let html = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;padding:16px 20px;background:var(--azul-claro);border-radius:var(--radio);border-left:4px solid var(--azul)">
+      <span style="font-size:24px">📅</span>
+      <div>
+        <div style="font-weight:700;font-size:15px;color:var(--azul)">${fechaLabel}</div>
+        <div style="font-size:13px;color:var(--gris-texto)">${ausenciasHoy.length} ausencia(s) aprobada(s) · ${infos.length} aviso(s)</div>
+      </div>
+    </div>`;
+
+  if (!infos.length && !ausenciasHoy.length) {
+    html += `
+      <div class="card">
+        <div class="empty-state">
+          <div class="icon">✅</div>
+          <h3>Sin novedades este día</h3>
+          <p>No hay cambios registrados para esta fecha. Todo marcha con normalidad.</p>
+        </div>
+      </div>`;
+  } else {
+    if (ausenciasHoy.length) {
+      html += `
+        <div class="card" style="margin-bottom:20px">
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">👨‍🏫 Docentes ausentes</h3>
+          ${ausenciasHoy.map(a => `
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--gris-medio)">
+              <span style="font-size:20px">🔴</span>
+              <div style="flex:1">
+                <div style="font-weight:700;font-size:14px">${a.profesor}</div>
+                <div style="font-size:13px;color:var(--gris-texto)">${a.motivo || 'Sin motivo especificado'}</div>
+              </div>
+              <span class="novedad-badge badge-aprobada">Aprobada</span>
+            </div>`).join('')}
+        </div>`;
+    }
+
+    if (infos.length) {
+      html += `
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">📢 Avisos para grupos</h3>
+          ${infos.map(info => {
+            const tipo = info.tipo || 'novedad';
+            const iconos = { novedad: '📋', alerta: '⚠️', aviso: 'ℹ️' };
+            const clases = { novedad: '', alerta: 'alerta', aviso: 'aviso' };
+            return `
+              <div class="info-item ${clases[tipo]}">
+                <div class="info-icon">${iconos[tipo] || '📋'}</div>
+                <div class="info-content">
+                  <h4>Grupo ${info.grupo}</h4>
+                  <p>${info.mensaje}</p>
+                  <div class="time">Docente ausente: ${info.profesor || '-'}</div>
+                </div>
+              </div>`;
+          }).join('')}
+        </div>`;
+    }
+  }
+
+  // Sección de todas las novedades del día
+  const novedadesHoy = db.novedades.filter(n => n.fecha === fecha);
+  if (novedadesHoy.length) {
+    html += `
+      <div class="card" style="margin-top:20px">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">🔄 Novedades procesadas</h3>
+        ${novedadesHoy.map(n => `
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--gris-medio)">
+            <span style="font-size:20px">📋</span>
+            <div>
+              <div style="font-weight:700;font-size:14px">${n.profesor || 'Sistema'}</div>
+              <div style="font-size:13px;color:var(--gris-texto)">${n.descripcion}</div>
+              ${n.gruposAfectados && n.gruposAfectados.length ? `
+                <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+                  ${n.gruposAfectados.map(g => `<span style="background:var(--azul-claro);color:var(--azul);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">Grupo ${g}</span>`).join('')}
+                </div>` : ''}
+            </div>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  document.getElementById('pageContent').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
