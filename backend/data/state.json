@@ -27,7 +27,7 @@
   ],
   "sequences": {
     "user": 6,
-    "absence": 5,
+    "absence": 6,
     "novedad": 4,
     "info": 3
   },
@@ -10433,6 +10433,18 @@
       },
       "aprobadaPor": "Wilton Mosquera",
       "aprobadaEn": "2026-06-12T07:33:26.947Z"
+    },
+    {
+      "id": "aus_5",
+      "profesor": "Ximena Mosquera",
+      "fecha": "2026-06-22",
+      "motivo": "",
+      "estado": "rechazada",
+      "creada": "2026-06-12",
+      "solicitadoPor": "Ximena Mosquera",
+      "resultado": null,
+      "rechazadaPor": "Wilton Mosquera",
+      "rechazadaEn": "2026-06-12T08:27:02.977Z"
     }
   ],
   "novedades": [
@@ -10768,6 +10780,24 @@
         "grupo": "6-1",
         "profesor": "LIBRE",
         "materia": "LIBRE"
+      }
+    },
+    {
+      "id": "audit_1781252806900",
+      "tipo": "ausencia_solicitada",
+      "usuario": "Ximena Mosquera",
+      "fecha": "2026-06-12T08:26:46.900Z",
+      "detalle": {
+        "id": "aus_5",
+        "profesor": "Ximena Mosquera",
+        "fecha": "2026-06-22",
+        "motivo": "",
+        "estado": "rechazada",
+        "creada": "2026-06-12",
+        "solicitadoPor": "Ximena Mosquera",
+        "resultado": null,
+        "rechazadaPor": "Wilton Mosquera",
+        "rechazadaEn": "2026-06-12T08:27:02.977Z"
       }
     }
   ]

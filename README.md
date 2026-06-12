@@ -1,4 +1,4 @@
-# Plataforma Educativa
+# IEGAA
 
 Sistema educativo para gestionar horarios, novedades, ausencias, información y usuarios.
 

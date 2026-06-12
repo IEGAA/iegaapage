@@ -548,7 +548,7 @@ function canViewInfo(role) {
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'iegaa2-platforma-educativa' });
+  res.json({ ok: true, service: 'iegaa2-iegaa' });
 });
 
 app.get('/api/catalogs', ensureAuth, (_req, res) => {
@@ -902,7 +902,7 @@ app.use((req, res) => {
 async function start() {
   state = await ensureState();
   app.listen(PORT, () => {
-    console.log(`Plataforma educativa backend running on http://localhost:${PORT}`);
+    console.log(`IEGAA backend running on http://localhost:${PORT}`);
   });
 }
 

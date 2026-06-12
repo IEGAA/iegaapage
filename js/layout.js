@@ -31,7 +31,7 @@ function renderLayout(pageId) {
         <div class="sidebar-logo">
           <div class="logo-icon">🎓</div>
           <div>
-            <span>Plataforma<br>Educativa</span>
+            <span>IEGAA</span>
           </div>
         </div>
       </div>
