@@ -23,7 +23,7 @@
 <script src="js/layout.js"></script>
 <script>
 const session = renderLayout('horarios');
-const canEditBase = session.rol === 'administrador' || session.rol === 'coordinador';
+const canEditBase = session.rol === 'administrador';
 let tabActivo = 'novedades';
 let diaActivo = DIAS[0];
 let grupoFiltro = '';
@@ -60,7 +60,7 @@ document.body.insertAdjacentHTML('beforeend', `
       <div class="form-row">
         <div class="form-group-app">
           <label>Profesor</label>
-          <select id="edProfesor"></select>
+          <select id="edProfesor" onchange="setLibreEditorState()"></select>
         </div>
         <div class="form-group-app">
           <label>Materia</label>
@@ -77,16 +77,30 @@ document.body.insertAdjacentHTML('beforeend', `
 
 function initEditorSelects() {
   setOptions('edDia', DIAS);
-  setOptions('edHora', HORAS);
+  setOptions('edHora', HORARIO_BLOQUES);
   setOptions('edGrupo', GRUPOS);
-  setOptions('edProfesor', PROFESORES);
-  setOptions('edMateria', MATERIAS);
+  setOptions('edProfesor', [LIBRE, ...PROFESORES]);
+  setOptions('edMateria', [LIBRE, ...MATERIAS]);
 }
 
 function setOptions(id, values) {
   const select = document.getElementById(id);
   if (!select) return;
-  select.innerHTML = values.map(value => `<option value="${value}">${value}</option>`).join('');
+  select.innerHTML = values.map(value => {
+    if (typeof value === 'object') {
+      return `<option value="${value.hora}">${value.etiqueta}</option>`;
+    }
+    return `<option value="${value}">${value}</option>`;
+  }).join('');
+}
+
+function setLibreEditorState() {
+  const esLibre = document.getElementById('edProfesor').value === LIBRE;
+  const materiaSelect = document.getElementById('edMateria');
+  materiaSelect.disabled = esLibre;
+  if (esLibre) {
+    materiaSelect.value = LIBRE;
+  }
 }
 
 function syncEditorState() {
@@ -94,9 +108,10 @@ function syncEditorState() {
   document.getElementById('edHora').value = editorState.hora;
   document.getElementById('edGrupo').value = editorState.grupo;
   const slot = horarioActual?.[editorState.dia]?.[editorState.hora]?.[editorState.grupo] || {};
-  document.getElementById('edProfesor').value = slot.profesor || PROFESORES[0];
-  document.getElementById('edMateria').value = slot.materia || MATERIAS[0];
+  document.getElementById('edProfesor').value = slot.profesor || LIBRE;
+  document.getElementById('edMateria').value = slot.materia || LIBRE;
   document.getElementById('edAula').value = slot.aula || '';
+  setLibreEditorState();
 }
 
 function openHorarioEditor(dia = editorState.dia, hora = editorState.hora, grupo = editorState.grupo) {
@@ -118,15 +133,23 @@ function guardarHorarioBase() {
   const profesor = document.getElementById('edProfesor').value;
   const materia = document.getElementById('edMateria').value;
   const aula = document.getElementById('edAula').value.trim();
+  const esLibre = profesor === LIBRE || materia === LIBRE;
 
-  if (!dia || !hora || !grupo || !profesor || !materia) {
+  if (!dia || !hora || !grupo || !profesor || (!esLibre && !materia)) {
     showToast('Completa los campos obligatorios.', 'error');
     return;
   }
 
   apiJson('/api/horarios/base', {
     method: 'PUT',
-    body: JSON.stringify({ dia, hora, grupo, profesor, materia, aula })
+    body: JSON.stringify({
+      dia,
+      hora,
+      grupo,
+      profesor,
+      materia: esLibre ? LIBRE : materia,
+      aula: esLibre ? '' : aula
+    })
   })
     .then(() => {
       showToast('Horario base actualizado.', 'success');
@@ -177,6 +200,7 @@ async function render() {
         <div class="leyenda-item"><div class="leyenda-dot" style="background:#bbf7d0"></div> 🟢 Entrada tardía</div>
         <div class="leyenda-item"><div class="leyenda-dot" style="background:#bfdbfe"></div> 🔵 Salida temprana</div>
         <div class="leyenda-item"><div class="leyenda-dot" style="background:#fecaca"></div> 🔴 Clase afectada</div>
+        <div class="leyenda-item"><div class="leyenda-dot" style="background:#e2e8f0"></div> LIBRE</div>
       </div>`;
 
     const diaData = horario[diaActivo] || {};
@@ -199,7 +223,7 @@ async function render() {
         const clickAction = tabActivo === 'base' && canEditBase ? `onclick="openHorarioEditor('${diaActivo}','${hora}','${grupo}')"` : '';
         return `<td ${clickAction} class="${editable}"><div class="celda-clase ${cssClass}"><div class="prof">${clase.profesor}</div><div class="mat">${clase.materia}</div>${aula}</div></td>`;
       }).join('');
-      return `<tr><td style="font-weight:700;white-space:nowrap;color:var(--azul)">${hora}</td>${cells}</tr>`;
+      return `<tr><td style="font-weight:700;white-space:nowrap;color:var(--azul)">${getHorarioLabel(hora)}</td>${cells}</tr>`;
     }).join('');
 
     content = `
@@ -268,7 +292,7 @@ function renderProfesorHorario() {
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           ${clases.map(c => `
             <div style="background:${c.afectada?'var(--rojo-claro)':'var(--azul-claro)'};border-radius:8px;padding:8px 14px">
-              <div style="font-weight:700;font-size:13px">${c.hora}</div>
+              <div style="font-weight:700;font-size:13px">${getHorarioLabel(c.hora)}</div>
               <div style="font-size:12px;color:var(--gris-texto)">Grupo ${c.grupo} — ${c.materia}${c.aula ? ` · Aula ${c.aula}` : ''}</div>
             </div>`).join('')}
         </div>
@@ -279,6 +303,14 @@ function renderProfesorHorario() {
 function setTab(t) { tabActivo = t; render(); }
 function setDia(d) { diaActivo = d; render(); }
 function setGrupo(g) { grupoFiltro = g; render(); }
+
+function getEstadoCelda(clase) {
+  if (!clase || clase.profesor === LIBRE || clase.materia === LIBRE) return 'libre';
+  if (clase.afectada) return 'afectada';
+  if (clase.entradaTarde) return 'entradaTarde';
+  if (clase.salidaTemprana) return 'salidaTemprana';
+  return 'normal';
+}
 
 initEditorSelects();
 render().catch(error => showToast(error.message, 'error'));

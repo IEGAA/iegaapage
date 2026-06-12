@@ -17,8 +17,27 @@ const PROFESORES = [
   'Jonny','Jonathan','Gabriel','Leady','Armando','Miguel','Fredy','Ángela','Echandía','Keila'
 ];
 
-const HORAS = ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00'];
+const LIBRE = 'LIBRE';
+
+const HORARIO_BLOQUES = [
+  { hora: '6:00', etiqueta: '6:00 - 6:55' },
+  { hora: '7:00', etiqueta: '6:55 - 7:50' },
+  { hora: '8:00', etiqueta: '7:50 - 8:45' },
+  { hora: '9:00', etiqueta: '8:45 - 9:15 (DESCANSO)' },
+  { hora: '10:00', etiqueta: '9:15 - 10:10' },
+  { hora: '11:00', etiqueta: '10:10 - 11:00' },
+  { hora: '12:00', etiqueta: '11:00 - 11:50' },
+  { hora: '13:00', etiqueta: '11:50 - 14:00 (DESCANSO)' },
+  { hora: '14:00', etiqueta: '14:00 - 14:45' },
+  { hora: '15:00', etiqueta: '15:00 - 15:45' }
+];
+
+const HORAS = HORARIO_BLOQUES.map(bloque => bloque.hora);
 const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+
+function getHorarioLabel(hora) {
+  return HORARIO_BLOQUES.find(bloque => bloque.hora === hora)?.etiqueta || hora;
+}
 
 const MATERIAS = [
   'Matemáticas','Español','Ciencias Naturales','Historia','Geografía',

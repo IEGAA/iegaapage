@@ -35,21 +35,24 @@
     "Lunes": {
       "6:00": {
         "6-1": {
-          "profesor": "Manedy",
-          "materia": "Biología",
-          "aula": "A-234"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel",
@@ -134,20 +137,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -232,20 +239,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -330,20 +341,23 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE"
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -428,20 +442,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -526,20 +544,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -624,20 +646,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -722,20 +748,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -820,20 +850,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -918,20 +952,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -1018,20 +1056,24 @@
     "Martes": {
       "6:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -1116,20 +1158,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -1214,20 +1260,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -1313,20 +1363,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonny",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonny",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonathan",
@@ -1411,20 +1465,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -1509,20 +1567,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -1607,20 +1669,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -1705,20 +1771,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -1803,20 +1873,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -1901,20 +1975,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2001,20 +2079,24 @@
     "Miércoles": {
       "6:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -2099,20 +2181,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -2197,20 +2283,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -2295,20 +2385,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonny",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonny",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonathan",
@@ -2393,20 +2487,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2491,20 +2589,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2589,20 +2691,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2687,20 +2793,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2785,20 +2895,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2883,20 +2997,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -2983,20 +3101,24 @@
     "Jueves": {
       "6:00": {
         "6-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Ruth Valencia",
@@ -3081,20 +3203,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Daniel José Muñoz",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel José Muñoz",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Laura",
@@ -3179,20 +3305,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel",
@@ -3277,20 +3407,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -3375,20 +3509,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3473,20 +3611,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3571,20 +3713,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3669,20 +3815,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3767,20 +3917,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3865,20 +4019,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -3965,20 +4123,24 @@
     "Viernes": {
       "6:00": {
         "6-1": {
-          "profesor": "Armando",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Armando",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Ángela",
@@ -4063,20 +4225,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Miguel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Miguel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Echandía",
@@ -4161,20 +4327,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Echandía",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Echandía",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Keila",
@@ -4259,20 +4429,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Keila",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Keila",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Wilmer Ríos",
@@ -4357,20 +4531,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4455,20 +4633,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4553,20 +4735,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4651,20 +4837,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4749,20 +4939,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4847,20 +5041,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -4949,21 +5147,24 @@
     "Lunes": {
       "6:00": {
         "6-1": {
-          "profesor": "Manedy",
-          "materia": "Biología",
-          "aula": "A-234"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel",
@@ -5048,20 +5249,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -5146,20 +5351,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -5244,20 +5453,23 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE"
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -5342,20 +5554,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5440,20 +5656,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5538,20 +5758,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5636,20 +5860,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5734,20 +5962,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5832,20 +6064,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luis Fernando Velásquez",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Mauricio Valencia",
@@ -5932,20 +6168,24 @@
     "Martes": {
       "6:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -6030,20 +6270,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -6128,20 +6372,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -6227,20 +6475,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Yan Pol",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonny",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonny",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonathan",
@@ -6325,20 +6577,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6423,20 +6679,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Filosofía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6521,20 +6781,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Química"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6619,20 +6883,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6717,20 +6985,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6815,20 +7087,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -6915,20 +7191,24 @@
     "Miércoles": {
       "6:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -7013,20 +7293,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Laura",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Laura",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "María Eugenia",
@@ -7111,20 +7395,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "María Eugenia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "María Eugenia",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonny",
@@ -7209,20 +7497,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Yan Pol",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonny",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonny",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Jonathan",
@@ -7307,20 +7599,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7405,20 +7701,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7503,20 +7803,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7601,20 +7905,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7699,20 +8007,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7797,20 +8109,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Gabriel Graciano",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel José Muñoz",
@@ -7897,20 +8213,24 @@
     "Jueves": {
       "6:00": {
         "6-1": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Mauricio Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Ruth Valencia",
@@ -7995,20 +8315,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Daniel José Muñoz",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Daniel José Muñoz",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Laura",
@@ -8093,20 +8417,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Manedy",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Laura",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Daniel",
@@ -8191,20 +8519,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ruth Valencia",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Daniel",
-          "materia": "Biología"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Yan Pol",
@@ -8289,20 +8621,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Ciencias Naturales"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8387,20 +8723,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8485,20 +8825,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8583,20 +8927,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8681,20 +9029,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8779,20 +9131,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "Eduard Tobón",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Eduard Tobón",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Luz Nodier García",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel Graciano",
@@ -8879,20 +9235,24 @@
     "Viernes": {
       "6:00": {
         "6-1": {
-          "profesor": "Armando",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Armando",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Ángela",
@@ -8977,20 +9337,24 @@
       },
       "7:00": {
         "6-1": {
-          "profesor": "Miguel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Miguel",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Echandía",
@@ -9075,20 +9439,24 @@
       },
       "8:00": {
         "6-1": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Fredy",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Echandía",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Echandía",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Keila",
@@ -9173,20 +9541,24 @@
       },
       "9:00": {
         "6-1": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "Ángela",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Keila",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Keila",
-          "materia": "Matemáticas"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Wilmer Ríos",
@@ -9271,20 +9643,24 @@
       },
       "10:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Historia"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -9369,20 +9745,24 @@
       },
       "11:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Geografía"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -9467,20 +9847,24 @@
       },
       "12:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Educación Física"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -9565,20 +9949,24 @@
       },
       "13:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Inglés"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -9663,20 +10051,24 @@
       },
       "14:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Arte"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -9761,20 +10153,24 @@
       },
       "15:00": {
         "6-1": {
-          "profesor": "María Eugenia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "6-2": {
-          "profesor": "María Eugenia",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-1": {
-          "profesor": "Jonathan",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "8-2": {
-          "profesor": "Jonathan",
-          "materia": "Ética"
+          "profesor": "LIBRE",
+          "materia": "LIBRE",
+          "aula": ""
         },
         "9-1": {
           "profesor": "Gabriel",
@@ -10359,6 +10755,19 @@
         "grupo": "6-1",
         "profesor": "Manedy",
         "materia": "Biología"
+      }
+    },
+    {
+      "id": "audit_1781252153199",
+      "tipo": "horario_base_modificado",
+      "usuario": "Administrador",
+      "fecha": "2026-06-12T08:15:53.199Z",
+      "detalle": {
+        "dia": "Lunes",
+        "hora": "9:00",
+        "grupo": "6-1",
+        "profesor": "LIBRE",
+        "materia": "LIBRE"
       }
     }
   ]

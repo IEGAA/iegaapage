@@ -29,7 +29,22 @@ const PROFESORES = [
   'Jonny','Jonathan','Gabriel','Leady','Armando','Miguel','Fredy','Ángela','Echandía','Keila'
 ];
 
-const HORAS = ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00'];
+const LIBRE = 'LIBRE';
+const HORARIO_BLOQUES = [
+  { hora: '6:00', etiqueta: '6:00 - 6:55' },
+  { hora: '7:00', etiqueta: '6:55 - 7:50' },
+  { hora: '8:00', etiqueta: '7:50 - 8:45' },
+  { hora: '9:00', etiqueta: '8:45 - 9:15 (DESCANSO)' },
+  { hora: '10:00', etiqueta: '9:15 - 10:10' },
+  { hora: '11:00', etiqueta: '10:10 - 11:00' },
+  { hora: '12:00', etiqueta: '11:00 - 11:50' },
+  { hora: '13:00', etiqueta: '11:50 - 14:00 (DESCANSO)' },
+  { hora: '14:00', etiqueta: '14:00 - 14:45' },
+  { hora: '15:00', etiqueta: '15:00 - 15:45' }
+];
+
+const HORAS = HORARIO_BLOQUES.map(bloque => bloque.hora);
+const GRUPOS_SALIDA_1150 = new Set(['6-1', '6-2', '8-1', '8-2']);
 const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
 const MATERIAS = [
   'Matemáticas','Español','Ciencias Naturales','Historia','Geografía',
@@ -73,6 +88,32 @@ function generateHorarioBase() {
     });
   });
   return horario;
+}
+
+function getHorarioLabel(hora) {
+  return HORARIO_BLOQUES.find(bloque => bloque.hora === hora)?.etiqueta || hora;
+}
+
+function isSalida1150Slot(grupo, hora) {
+  return GRUPOS_SALIDA_1150.has(grupo) && getHourIndex(hora) >= getHourIndex('13:00');
+}
+
+function normalizeSalida1150Schedule(schedule) {
+  let changed = false;
+  DIAS.forEach(dia => {
+    const daySchedule = schedule[dia] || (schedule[dia] = {});
+    HORAS.forEach(hora => {
+      const hourSchedule = daySchedule[hora] || (daySchedule[hora] = {});
+      GRUPOS_SALIDA_1150.forEach(grupo => {
+        const slot = hourSchedule[grupo];
+        if (!slot || slot.profesor !== LIBRE || slot.materia !== LIBRE || slot.aula) {
+          hourSchedule[grupo] = { profesor: LIBRE, materia: LIBRE, aula: '' };
+          changed = true;
+        }
+      });
+    });
+  });
+  return changed;
 }
 
 function hashPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
@@ -151,9 +192,19 @@ async function ensureState() {
     const loaded = JSON.parse(raw);
     if (!loaded.horarioNovedades) loaded.horarioNovedades = deepClone(loaded.horarioBase || generateHorarioBase());
     if (!loaded.sequences) loaded.sequences = { user: 2, absence: 1, novedad: 1, info: 1 };
+    const base = loaded.horarioBase || generateHorarioBase();
+    const changedBase = normalizeSalida1150Schedule(base);
+    const novedades = loaded.horarioNovedades || deepClone(base);
+    const changedNovedades = normalizeSalida1150Schedule(novedades);
+    loaded.horarioBase = base;
+    loaded.horarioNovedades = novedades;
+    if (changedBase || changedNovedades) {
+      await fsp.writeFile(STATE_PATH, JSON.stringify(loaded, null, 2), 'utf8');
+    }
     return loaded;
   } catch {
     const initial = createInitialState();
+    normalizeSalida1150Schedule(initial.horarioBase);
     initial.horarioNovedades = deepClone(initial.horarioBase);
     await fsp.writeFile(STATE_PATH, JSON.stringify(initial, null, 2), 'utf8');
     return initial;
@@ -555,21 +606,30 @@ app.put('/api/horarios/base', ensureAuth, async (req, res) => {
     return res.status(403).json({ message: 'Solo el administrador puede modificar el horario base' });
   }
 
-  const { dia, hora, grupo, profesor, materia } = req.body;
-  if (!DIAS.includes(dia) || !HORAS.includes(hora) || !GRUPOS.includes(grupo) || !profesor || !materia) {
+  const { dia, hora, grupo, profesor, materia, aula = '' } = req.body;
+  const profesorNormalizado = String(profesor || '').trim();
+  const materiaNormalizada = String(materia || '').trim();
+  const aulaNormalizada = String(aula || '').trim();
+  const esLibre = profesorNormalizado === LIBRE || materiaNormalizada === LIBRE;
+
+  if (!DIAS.includes(dia) || !HORAS.includes(hora) || !GRUPOS.includes(grupo) || !profesorNormalizado || (!esLibre && !materiaNormalizada)) {
     return res.status(400).json({ message: 'Datos inválidos para modificar el horario' });
   }
 
   state.horarioBase[dia] = state.horarioBase[dia] || {};
   state.horarioBase[dia][hora] = state.horarioBase[dia][hora] || {};
-  state.horarioBase[dia][hora][grupo] = { profesor, materia };
+  state.horarioBase[dia][hora][grupo] = isSalida1150Slot(grupo, hora)
+    ? { profesor: LIBRE, materia: LIBRE, aula: '' }
+    : esLibre
+      ? { profesor: LIBRE, materia: LIBRE, aula: '' }
+      : { profesor: profesorNormalizado, materia: materiaNormalizada, aula: aulaNormalizada };
   state.horarioNovedades = deepClone(state.horarioBase);
   state.auditLog.push({
     id: `audit_${Date.now()}`,
     tipo: 'horario_base_modificado',
     usuario: req.user.nombre,
     fecha: new Date().toISOString(),
-    detalle: { dia, hora, grupo, profesor, materia }
+    detalle: { dia, hora, grupo, profesor: state.horarioBase[dia][hora][grupo].profesor, materia: state.horarioBase[dia][hora][grupo].materia, aula: state.horarioBase[dia][hora][grupo].aula || '' }
   });
   await queueSave();
   res.json({ message: 'Horario base actualizado', horario: state.horarioBase });
